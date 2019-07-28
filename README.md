@@ -1,5 +1,24 @@
 # From Rails to Spring Boot
 
+A quick guide for developers migrating from Rails to Spring Boot.
+
+## Pre-requisite
+[Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+## Maven instalation
+
+### On Ubuntu
+```
+sudo apt update
+sudo apt install maven
+```
+
+### On Mac OS (with Homebrew)
+```
+brew update
+brew install maven
+```
+
 ## Spring Boot instalation
 
 ### On Ubuntu (with SDKMAN)
@@ -28,12 +47,16 @@ using the ones that are aimed at a basic web project:
 Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
 - [data-jpa](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa):
 Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
-- [freemmarker](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker):
+- [freemarker](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker):
 Java library to generate text output (HTML web pages, e-mails,
 configuration files, source code, etc.) based on templates and changing data.
 
+By default, Spring uses [Maven](https://maven.apache.org/) as the default
+project management tool. After running the command above, dependencies can be
+found in `pom.xml` file, at the root directory.
 
-Then install dependencies specified at `pom.xml`
+Install dependencies specified at `pom.xml` by using maven:
+
 ```
 # bundle install
 mvn clean install
