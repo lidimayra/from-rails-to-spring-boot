@@ -1,6 +1,11 @@
 # From Rails to Spring Boot
 
-A quick guide for developers migrating from Rails to Spring Boot.
+Like Rails, Spring Boot also follows _Convention over Configuration_ principles.
+This repository's goal is to focus on similarities and differences between both
+frameworks in order to provide a quick guide for developers that are migrating
+from one to another.
+
+Contributions are welcome!
 
 [Pre-requisite](#pre-requisite)\
 [Maven instalation](#maven-instalation)\
