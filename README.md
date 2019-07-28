@@ -2,6 +2,11 @@
 
 A quick guide for developers migrating from Rails to Spring Boot.
 
+[Pre-requisite](#pre-requisite)\
+[Maven instalation](#maven-instalation)\
+[Spring Boot instalation](#spring-boot-instalation)\
+[Spring app](#spring-app)
+
 ## Pre-requisite
 [Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
