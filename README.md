@@ -52,19 +52,28 @@ using the ones that are aimed at a basic web project:
 Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
 - [data-jpa](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa):
 Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
+<<<<<<< HEAD
 - [h2](https://mvnrepository.com/artifact/com.h2database/h2): Provides a fast
 in-memory database that supports JDBC API, with a small
 (2mb) footprint. Supports embedded and server modes as well as a browser based
 console application.
 - [thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf): Server-side Java template engine
 
-By default, Spring uses [Maven](https://maven.apache.org/) as the default
-project management tool. After running the command above, dependencies can be
-found in `pom.xml` file, at the root directory.
+By default, Spring uses [Maven](https://maven.apache.org/) as the project
+management tool. After running the command above, dependencies can be found in
+`pom.xml` file, at the root directory.
 
-Install dependencies specified at `pom.xml` by using maven:
+Install dependencies specified in `pom.xml` by using maven:
 
 ```
 # bundle install
 mvn clean install
 ```
+
+Start the server:
+```
+# rails s
+mvn spring-boot:run
+```
+
+This enables application to be available at http://localhost:8080/.
