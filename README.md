@@ -82,3 +82,37 @@ mvn spring-boot:run
 ```
 
 This enables application to be available at http://localhost:8080/.
+
+## Controllers and views
+
+In Spring Boot, there is no such thing as the rails generators.
+
+Write the controller inside `<app_name>/src/main/java/<package_name>`:
+
+```
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class FooController {
+    @GetMapping("/foo")
+    public String index() {
+        return "bar";
+    }
+}
+```
+
+The `@GetMapping` annotation ensures that GET requests performed to `/foo` will be
+mapped to the method declared right after it (there is no file similar to
+Rails' routes.rb in Spring Boot. Routes are defined alongside with its methods).
+
+Because of Thymeleaf, by returning the String "bar", the application will look
+for an HTML file of the same name in `src/main/resources/templates/`
+
+_bar.html_
+```
+<p>FooBar</p>
+```
+
+Now, if we run the application and access `http://localhost:8080/foo`, we'll see
+the _bar.html_ page being rendered.
