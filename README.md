@@ -9,7 +9,7 @@ Contributions are welcome!
 
 [Pre-requisite](#pre-requisite)\
 [Maven instalation](#maven-instalation)\
-[Spring Boot instalation](#spring-boot-instalation)\
+[Spring Boot instalation](#spring-boot-cli-instalation)\
 [Spring app](#spring-app)
 
 ## Pre-requisite
@@ -29,7 +29,7 @@ brew update
 brew install maven
 ```
 
-## Spring Boot instalation
+## Spring Boot CLI instalation
 
 ### On Ubuntu (with SDKMAN)
 ```
@@ -44,9 +44,11 @@ brew tap pivotal/tap
 brew install springboot
 ```
 
-## Spring app
+## App Initialization
 
-App initialization:
+Once Spring Boot CLI is installed, we can use `spring init` command to a start a
+new Spring Boot project (just like we would do with `rails new`):
+
 ```
 # rails new <app_name>
 spring init <app name> -d=web,data-jpa,h2,thymeleaf
@@ -57,12 +59,17 @@ using the ones that are aimed at a basic web project:
 Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
 - [data-jpa](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa):
 Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
-<<<<<<< HEAD
 - [h2](https://mvnrepository.com/artifact/com.h2database/h2): Provides a fast
 in-memory database that supports JDBC API, with a small
 (2mb) footprint. Supports embedded and server modes as well as a browser based
 console application.
 - [thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf): Server-side Java template engine
+
+[Example of Spring Boot
+initialization](https://github.com/lidimayra/from-rails-to-spring-boot/commit/310ae4766254c3b18c6fe144cf7eacee49dcc515).
+
+Note that a class was created named as `DemoApplication.java` in
+`src/main/java/com/example/<app_name>/` ([Example](https://github.com/lidimayra/from-rails-to-spring-boot/blob/310ae4766254c3b18c6fe144cf7eacee49dcc515/myapp/src/main/java/com/example/myapp/DemoApplication.java))
 
 By default, Spring uses [Maven](https://maven.apache.org/) as the project
 management tool. After running the command above, dependencies can be found in
@@ -81,15 +88,16 @@ Start the server:
 mvn spring-boot:run
 ```
 
-This enables application to be available at http://localhost:8080/.
+Now application can be accessed at http://localhost:8080/.
 
 ## Controllers and views
 
-In Spring Boot, there is no such thing as the rails generators.
+In Spring Boot, there is no such thing as the rails generators. Also, there
+is no file like _routes.rb_, where all routes are specified in a single place.
 
 Write the controller inside `<app_name>/src/main/java/<package_name>`:
 
-```
+```java
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -109,10 +117,12 @@ Rails' routes.rb in Spring Boot. Routes are defined alongside with its methods).
 Because of Thymeleaf, by returning the String "bar", the application will look
 for an HTML file of the same name in `src/main/resources/templates/`
 
+Create the following page:
 _bar.html_
-```
+```html
 <p>FooBar</p>
 ```
+[Example](https://github.com/lidimayra/from-rails-to-spring-boot/commit/13d195c)
 
-Now, if we run the application and access `http://localhost:8080/foo`, we'll see
-the _bar.html_ page being rendered.
+Now, if we run the application with `mvn spring-boot:run` command and access
+it at `http://localhost:8080/foo`, we'll see the _bar.html_ page being rendered.
