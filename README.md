@@ -51,7 +51,7 @@ new Spring Boot project (just like we would do with `rails new`):
 
 ```
 # rails new <app_name>
-spring init <app name> -d=web,data-jpa,h2,thymeleaf
+spring init <app_name> -d=web,data-jpa,h2,thymeleaf
 ```
 `-d` allows us to specify dependencies we want to set up. In this example we're
 using the ones that are aimed at a basic web project:
@@ -126,3 +126,18 @@ _bar.html_
 
 Now, if we run the application with `mvn spring-boot:run` command and access
 it at `http://localhost:8080/foo`, we'll see the _bar.html_ page being rendered.
+
+## Project Structure
+
+At this point, we have the initial structure of a Maven project.
+
+- Main application code is placed in
+  [src/main/java/](https://github.com/lidimayra/from-rails-to-spring-boot/tree/13d195c/myapp/src/main/java)
+- Resources are placed in [src/main/resources](https://github.com/lidimayra/from-rails-to-spring-boot/tree/13d195c/myapp/src/main/resources)
+- Tests code is placed in
+  [src/test/java](https://github.com/lidimayra/from-rails-to-spring-boot/tree/310ae47/myapp/src/test/java)
+
+In the root directory, we have the pom file:
+[pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/310ae4766254c3b18c6fe144cf7eacee49dcc515/myapp/pom.xml).
+This is the Maven build specification. Like in Rails Gemfile, it contains the
+project's dependencies declarations.
