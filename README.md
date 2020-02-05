@@ -39,7 +39,7 @@ brew install springboot
 App initialization:
 ```
 # rails new <app_name>
-spring init <app name> -d=web,data-jpa,h2,freemarker
+spring init <app name> -d=web,data-jpa,h2,thymeleaf
 ```
 `-d` allows us to specify dependencies we want to set up. In this example we're
 using the ones that are aimed at a basic web project:
@@ -47,9 +47,11 @@ using the ones that are aimed at a basic web project:
 Build web, including RESTful, applications using Spring MVC. Uses Apache Tomcat as the default embedded container.
 - [data-jpa](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa):
 Persist data in SQL stores with Java Persistence API using Spring Data and Hibernate.
-- [freemarker](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker):
-Java library to generate text output (HTML web pages, e-mails,
-configuration files, source code, etc.) based on templates and changing data.
+- [h2](https://mvnrepository.com/artifact/com.h2database/h2): Provides a fast
+in-memory database that supports JDBC API, with a small
+(2mb) footprint. Supports embedded and server modes as well as a browser based
+console application.
+- [thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf): Server-side Java template engine
 
 By default, Spring uses [Maven](https://maven.apache.org/) as the default
 project management tool. After running the command above, dependencies can be
