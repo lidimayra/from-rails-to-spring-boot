@@ -75,20 +75,22 @@ By default, Spring uses [Maven](https://maven.apache.org/) as the project
 management tool. After running the command above, dependencies can be found in
 `pom.xml` file, at the root directory.
 
-Install dependencies specified in `pom.xml` by using maven:
+Install dependencies specified in `pom.xml` by using Maven:
 
 ```
 # bundle install
 mvn clean install
 ```
 
-Start the server:
+Start the server using `spring-boot:run`, a task that's provided by Maven
+plugin:
 ```
 # rails s
 mvn spring-boot:run
 ```
 
-Now application can be accessed at http://localhost:8080/.
+Now application can be accessed at http://localhost:8080/. At this point, an
+error page will be rendered, as there are no controllers defined so far.
 
 ## Controllers and views
 
@@ -138,6 +140,6 @@ At this point, we have the initial structure of a Maven project.
   [src/test/java](https://github.com/lidimayra/from-rails-to-spring-boot/tree/310ae47/myapp/src/test/java)
 
 In the root directory, we have the pom file:
-[pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/310ae4766254c3b18c6fe144cf7eacee49dcc515/myapp/pom.xml).
+[pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/47070ef50056a763fdfeba46a8c8da2034de6118/myapp/pom.xml).
 This is the Maven build specification. Like in Rails Gemfile, it contains the
 project's dependencies declarations.
