@@ -143,3 +143,19 @@ In the root directory, we have the pom file:
 [pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/47070ef50056a763fdfeba46a8c8da2034de6118/myapp/pom.xml).
 This is the Maven build specification. Like in Rails Gemfile, it contains the
 project's dependencies declarations.
+
+## RESTful routes
+
+Let's say we want to build a blog containing the seven RESTful actions (index,
+new, create, show, edit and destroy) for posts path. In Rails, we could achieve
+that by defining `resources: :posts` in `routes.rb` file.
+
+As mentioned previously, Spring Boot does not have a central point where
+all routes are specified. Those are defined in the controllers instead.
+
+We've already seen an example using `@GetMapping` annotation to demonstrate the
+definition of a route that uses `GET` method. Similarly, Spring supports other
+four inbuilt annotations for handling different types of HTTP request methods:
+`@PostMapping`, `@PutMapping`, `@DeleteMapping` and `@PatchMapping`.
+
+Example of these concepts being applied for the blog posts can be found in [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/101611c).
