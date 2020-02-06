@@ -1,0 +1,1 @@
+<p>New Post</p>
