@@ -1,5 +1,6 @@
 package com.example.myapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +9,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 
 @Controller
 public class BlogController {
+
+    @Autowired
+    private PostRepository postRepository;
+
     @GetMapping("/posts")
     public String listPosts() {
         return "blog/index";
@@ -19,9 +24,9 @@ public class BlogController {
     }
 
     @PostMapping("/posts")
-    public String createPost() {
-        //TODO: logic responsible for saving a post
-        return null;
+    public String createPost(Post post) {
+        postRepository.save(post);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/{postId}")
