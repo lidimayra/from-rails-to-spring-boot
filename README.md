@@ -261,3 +261,53 @@ public class BlogController {
 
 See whole implementation [in
 here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b7301838feb251851874fc72704e0100d2e8fa0e#diff-926ef30f0a8789410c4e35200aacb000).
+
+## Displaying a collection of data
+
+We'll make changes to `/posts` page so it will list all posts that are
+recorded in the database.
+
+`BlogController`'s method that's associated to this route needs to be adjusted
+for making this data available to the view:
+
+```java
+@GetMapping("/posts")
+public String listPosts(Model model) {
+    List<Post> posts = postRepository.findAll();
+    model.addAttribute("posts", posts);
+    return "blog/index";
+}
+```
+
+In Spring, Models are used to hold application data and make it available to the
+view (like instance variables in Rails). In this example, we're adding the list
+of posts to a key named `posts`, so we can access it from the template.
+
+Following code must be implemented to
+[templates/blog/index.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/101611c7/myapp/src/main/resources/templates/blog/index.html):
+```html
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<h1>Blog</h1>
+
+<dl th:each="post : ${posts}">
+    <dt>
+        <span th:text="${post.title}">Title</span>
+    </dt>
+
+    <dd>
+        <span th:text="${post.content}">Content</span>
+    </dd>
+</dl>
+
+<a th:href="@{/posts/new}">Submit a new post</a>
+
+```
+
+See implementation [in
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b96ce2c).
+
+Now, accessing application at http://localhost:8080/posts, it is possible to
+list and to submit posts using the features implemented so far. Similar approach
+can be applied to implement the other actions.
