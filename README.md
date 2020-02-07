@@ -191,8 +191,9 @@ public class Post {
 ```
 
 Spring Data JPA provides some built-in methods to manipulate common data
-persistence operations through the usage of repositories. So, to work with Post
-data, a PostRepository must be implemented as well:
+persistence operations through the usage of repositories in a way that's very
+similar to Rails' ActiveRecord. So, to work with Post data, a PostRepository must
+be implemented as well:
 
 ```java
 public interface PostRepository extends JpaRepository<Post, Long> {
@@ -207,3 +208,56 @@ This interface will be automatically implemented at runtime.
 
 Whole example can be found [in
 here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/e755e5a).
+
+## Performing a creation through a web interface
+
+Next step is adding a form to submit posts to the blog.
+At this point, we already have the
+[templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/101611c7a5c5321169e492ed19381df5c1b12c76/myapp/src/main/resources/templates/blog/new.html)
+file containing a single line in it.
+
+Using Thymelaf, we can do that with the following approach:
+
+```html
+<!DOCTYPE html SYSTEM
+"http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <p>New Post</p>
+        <form method="POST" action="/posts">
+            <label for="title">Title:</label>
+            <input type="text" name="title" size="50"></input><br/>
+            <label for="content">Content:</label><br/>
+            <textarea name="content" cols="80" rows="5">
+                </textarea><br/>
+            <input type="submit"></input>
+        </form>
+    </body>
+</html>
+```
+
+And then, `BlogController` must be adjusted to permit that when a POST request
+to `/posts` is performed, the submitted params must be used to create this new
+post.
+
+```java
+@Controller
+public class BlogController {
+
+    @Autowired
+    private PostRepository postRepository;
+
+    @GetMapping("/posts")
+    public String listPosts() { ... }
+
+    @PostMapping("/posts")
+    public String createPost(Post post) {
+        postRepository.save(post); // Use JPA repository built-in method.
+        return "redirect:/posts"; // redirect user to /posts page.
+    }
+}
+```
+
+See whole implementation [in
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b7301838feb251851874fc72704e0100d2e8fa0e#diff-926ef30f0a8789410c4e35200aacb000).
