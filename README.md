@@ -10,7 +10,13 @@ Contributions are welcome!
 [Pre-requisite](#pre-requisite)\
 [Maven instalation](#maven-instalation)\
 [Spring Boot instalation](#spring-boot-cli-instalation)\
-[Spring app](#spring-app)
+[App Initialization](#app-initialization)\
+[Controllers & Views](#controllers-and-views)\
+[Project Structure](#project-structure)\
+[RESTful routes](#restful-routes)\
+[From Rails Models to Spring Entities](#from-rails-models-to-spring-entities)\
+[Performing a creation through a web interface](#performing-a-creation-through-a-web-interface)\
+[Displaying a collection of data](#displaying-a-collection-of-data)
 
 ## Pre-requisite
 [Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
