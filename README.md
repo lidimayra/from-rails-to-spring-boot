@@ -159,3 +159,51 @@ four inbuilt annotations for handling different types of HTTP request methods:
 `@PostMapping`, `@PutMapping`, `@DeleteMapping` and `@PatchMapping`.
 
 Example of these concepts being applied for the blog posts can be found in [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/101611c).
+
+## From Rails Models to Spring Entities
+
+In order to represent a Post in the application-level, we'll need to define it
+as an Spring JPA Entity (very similar to the way it would be done with a Model
+in Rails).
+
+```java
+@Entity // Designate it as a JPA Entity
+public class Post {
+
+    @Id // Mark id field as the entity's identity
+    @GeneratedValue(strategy = GenerationType.AUTO) // Value will be automatically provided
+    private Long id;
+    private String title;
+    private String content;
+
+    public Long getId() { ... }
+
+    public void setId(Long id) { ... }
+
+    public String getTitle() { ... }
+
+    public void setTitle(String title) { ... }
+
+    public String getContent() { ... }
+
+    public void setContent(String content) { ... }
+}
+```
+
+Spring Data JPA provides some built-in methods to manipulate common data
+persistence operations through the usage of repositories. So, to work with Post
+data, a PostRepository must be implemented as well:
+
+```java
+public interface PostRepository extends JpaRepository<Post, Long> {
+}
+```
+
+JpaRepository interface takes to params, in this scenario: `Post` and `Long`.
+`Post` because it is the entity that will be used and `Long` because that's the
+type of `Post`'s identity (ID).
+
+This interface will be automatically implemented at runtime.
+
+Whole example can be found [in
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/e755e5a).
