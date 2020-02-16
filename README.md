@@ -18,7 +18,8 @@ Contributions are welcome!
 [Performing a creation through a web interface](#performing-a-creation-through-a-web-interface)\
 [Displaying a collection of data](#displaying-a-collection-of-data)\
 [Editing and Updating data](#editing-and-updating-data)\
-[Showing a Resource](#showing-a-resource)
+[Showing a Resource](#showing-a-resource)\
+[Destroying a Resource](#destroying-a-resource)
 
 ## Pre-requisite
 [Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
@@ -452,3 +453,37 @@ We can also add a link at posts index to allow direct access to show:
 
 Implementation can be seen [in
 here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/dd98c1d).
+
+## Destroying a Resource
+
+Now, we'll add the feature to remove a post.
+
+In `BlogController`:
+```java
+@GetMapping("/posts/{postId}/delete")
+public String deletePost(@PathVariable("postId") long id, Model model) {
+    Post recordedPost = postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
+
+    postRepository.delete(recordedPost);
+    model.addAttribute("posts", postRepository.findAll());
+    return "blog/index";
+}
+```
+
+Note that we're using GET method in here. That's because in this example, our
+app is a monolith and DELETE method is not supported by the browsers. In order to
+keep things simple and avoid the addition of a form with a hidden field to
+handle this method (like we did when updating), this one is being used as a GET.
+If this was an API, `@DeleteMapping` would be the ideal option.
+
+And then we can add a link to delete in index page:
+
+```html
+<a th:href="@{/posts/{id}/delete(id=${post.id})}">Delete</a>
+```
+
+Now it is possible to access https://localhost:8080/posts and delete each post
+by using the delete link that's displayed below it.
+
+Implementation can be found [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/cb38bf7).
