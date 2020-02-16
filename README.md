@@ -16,7 +16,8 @@ Contributions are welcome!
 [RESTful routes](#restful-routes)\
 [From Rails Models to Spring Entities](#from-rails-models-to-spring-entities)\
 [Performing a creation through a web interface](#performing-a-creation-through-a-web-interface)\
-[Displaying a collection of data](#displaying-a-collection-of-data)
+[Displaying a collection of data](#displaying-a-collection-of-data)\
+[Editing and Updating data](#editing-and-updating-data)
 
 ## Pre-requisite
 [Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
@@ -317,3 +318,90 @@ here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b96ce2c).
 Now, accessing application at http://localhost:8080/posts, it is possible to
 list and to submit posts using the features implemented so far. Similar approach
 can be applied to implement the other actions.
+
+## Editing and Updating data
+
+Now we want to enable editing/updating functionalities.
+Following changes must be made to `editPost()` method in `BlogController`:
+
+```java
+@getMapping("/posts/{postId}/edit")
+public String editPost(@PathVariable("postId") long id, Model model) {
+    Post post = postRepository.findById(id)
+          .orElseThrow(() -> new IllegalArgumentException("Invalid Post
+Id:" + id)); // Ensure post exists before rendering edit form
+
+    model.addAttribute("post", post); // enable post to be consumed by edit template
+
+    return "blog/edit"; // render edit template
+}
+```
+
+Note that the `id` parameter contains a `@PathVariable` annotation. This
+annotation indicates that this param must receive a value that's embedded in the
+path. In this case, `id` param will have the value that's passed as `postId`
+when performing a request to `/posts/{postId}/edit`. Just like we would do by
+calling `params[postId]` in Rails.
+
+Then, we must implement the edit form:
+
+
+```html
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <p>Edit Post</p>
+        <form th:method="post"
+              th:action="@{/posts/{id}(id=${post.id})}"
+              th:object="${post}">
+
+            <input type="hidden" name="_method" value="patch" />
+            <label for="title">Title:</label>
+            <input type="text" name="title" size="50" th:field="${post.title}"></input>
+            <br/>
+            <label for="content">Content:</label>
+            <br/>
+            <textarea name="content" cols="80" rows="5" th:field="${post.content}"></textarea>
+            <br/>
+            <input type="submit"></input>
+        </form>
+    </body>
+</html>
+```
+
+This is enough to render an edit form. Thanks to Thymeleaf we can use `th:field`
+to map Post fields and provide a pre-populated form to the final user. At
+this point, edit form can be accessed at
+https://localhost:8080/posts/<post_id>/edit.
+
+However, as the update behavior wasn's implemented yet, it is still pointless to
+submit this form.
+
+In order to implement it, the following changes are required in the
+`BlogController`:
+
+```java
+@PatchMapping("/posts/{postId}")
+public String updatePost(@PathVariable("postId") long id, Model model, Post post) {
+    Post recordedPost = postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
+
+    recordedPost.setTitle(post.getTitle());
+    recordedPost.setContent(post.getContent());
+    postRepository.save(recordedPost);
+
+    model.addAttribute("posts", postRepository.findAll());
+    return "blog/index";
+}
+```
+
+After these changes, posts are ready to be edited through the UI. An edit link
+can also be added to `posts/index` to enable edit form to be easily accessed:
+
+```html
+<a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
+```
+
+This implementation can be seen [in
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/2960884).
