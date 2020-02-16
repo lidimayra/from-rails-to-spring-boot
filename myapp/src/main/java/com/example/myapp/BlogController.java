@@ -66,8 +66,11 @@ public class BlogController {
     }
 
     @DeleteMapping("/posts/{postId}")
-    public String deletePost() {
-        //TODO: logic responsible for deleting a post
-        return null;
+    public String deletePost(@PathVariable("postId") long id) {
+        Post recordedPost = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
+
+        postRepository.delete(recordedPost);
+        return "blog/index";
     }
 }

@@ -17,7 +17,8 @@ Contributions are welcome!
 [From Rails Models to Spring Entities](#from-rails-models-to-spring-entities)\
 [Performing a creation through a web interface](#performing-a-creation-through-a-web-interface)\
 [Displaying a collection of data](#displaying-a-collection-of-data)\
-[Editing and Updating data](#editing-and-updating-data)
+[Editing and Updating data](#editing-and-updating-data)\
+[Showing a Resource](#showing-a-resource)
 
 ## Pre-requisite
 [Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
@@ -373,7 +374,7 @@ Then, we must implement the edit form:
 This is enough to render an edit form. Thanks to Thymeleaf we can use `th:field`
 to map Post fields and provide a pre-populated form to the final user. At
 this point, edit form can be accessed at
-https://localhost:8080/posts/<post_id>/edit.
+`https://localhost:8080/posts/<post_id>/edit`.
 
 However, as the update behavior wasn's implemented yet, it is still pointless to
 submit this form.
@@ -405,3 +406,49 @@ can also be added to `posts/index` to enable edit form to be easily accessed:
 
 This implementation can be seen [in
 here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/2960884).
+
+## Showing a Resource
+
+Given what've done so far, there is nothing new in implementing the feature
+responsible for showing a resource.
+
+Changes to be performed to the controller:
+```java
+@GetMapping("/posts/{postId}")
+public String showPost() {
+public String showPost(@PathVariable("postId") long id, Model model) {
+    Post post = postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
+
+    model.addAttribute("post", post);
+
+    return "blog/show";
+}
+```
+
+And a simple template to display title and content for a single post:
+```html
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+        <h1 th:text="${post.title}"></h1>
+        <hr>
+        <p th:text="${post.content}"></p>
+
+        <p><a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a></p>
+        <hr>
+        <a th:href="@{/posts/}">Go back to posts</a>
+    </body>
+</html>
+```
+
+These changes enable post details to be available at `https://localhost:8080/posts/<post_id>`.
+
+We can also add a link at posts index to allow direct access to show:
+```html
+<a th:href="@{/posts/{id}/(id=${post.id})}">Show</a>
+```
+
+Implementation can be seen [in
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/dd98c1d).
