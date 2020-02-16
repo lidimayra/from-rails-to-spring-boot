@@ -3,10 +3,7 @@ package com.example.myapp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,14 +37,27 @@ public class BlogController {
     }
 
     @GetMapping("/posts/{postId}/edit")
-    public String editPost() {
+    public String editPost(@PathVariable("postId") long id, Model model) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
+
+        model.addAttribute("post", post);
+
         return "blog/edit";
     }
 
     @PatchMapping("/posts/{postId}")
-    public String updatePost() {
-        //TODO: logic responsible for updating a post
-        return null;
+    public String updatePost(@PathVariable("postId") long id, Model model, Post post) {
+        Post recordedPost = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
+
+        recordedPost.setTitle(post.getTitle());
+        recordedPost.setContent(post.getContent());
+        postRepository.save(recordedPost);
+
+        model.addAttribute("posts", postRepository.findAll());
+        return "blog/index";
+
     }
 
     @DeleteMapping("/posts/{postId}")
