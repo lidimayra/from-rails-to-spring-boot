@@ -235,8 +235,8 @@ Using Thymelaf, we can do that with the following approach:
             <label for="title">Title:</label>
             <input type="text" name="title" size="50"></input><br/>
             <label for="content">Content:</label><br/>
-            <textarea name="content" cols="80" rows="5">
-                </textarea><br/>
+            <textarea name="content" cols="80" rows="5"></textarea>
+            <br/>
             <input type="submit"></input>
         </form>
     </body>
