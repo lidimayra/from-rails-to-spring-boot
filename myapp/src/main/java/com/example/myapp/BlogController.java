@@ -65,12 +65,13 @@ public class BlogController {
 
     }
 
-    @DeleteMapping("/posts/{postId}")
-    public String deletePost(@PathVariable("postId") long id) {
+    @GetMapping("/posts/{postId}/delete")
+    public String deletePost(@PathVariable("postId") long id, Model model) {
         Post recordedPost = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
 
         postRepository.delete(recordedPost);
+        model.addAttribute("posts", postRepository.findAll());
         return "blog/index";
     }
 }
