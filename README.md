@@ -60,8 +60,12 @@ new Spring Boot project (just like we would do with `rails new`):
 
 ```
 # rails new <app_name>
-spring init <app_name> -d=web,data-jpa,h2,thymeleaf
+spring init <app_name> --build=maven -d=web,data-jpa,h2,thymeleaf
 ```
+`--build` allows us to specify a build system:
+- [maven](https://maven.apache.org/): Build automation and dependency management tool. It also uses convention over
+  configuration.
+
 `-d` allows us to specify dependencies we want to set up. In this example we're
 using the ones that are aimed at a basic web project:
 - [web](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web):
