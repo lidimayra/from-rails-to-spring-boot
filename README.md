@@ -79,16 +79,16 @@ console application.
 - [thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf): Server-side Java template engine
 
 [Example of Spring Boot
-initialization](https://github.com/lidimayra/from-rails-to-spring-boot/commit/310ae4766254c3b18c6fe144cf7eacee49dcc515).
+initialization](https://github.com/lidimayra/from-rails-to-spring-boot/commit/8725cea838574719da9610764c8a59199991c624).
 
 Note that a class was created named as `DemoApplication.java` in
-`src/main/java/com/example/<app_name>/` ([Example](https://github.com/lidimayra/from-rails-to-spring-boot/blob/310ae4766254c3b18c6fe144cf7eacee49dcc515/myapp/src/main/java/com/example/myapp/DemoApplication.java))
+`src/main/java/com/example/<app_name>/` ([Example](https://github.com/lidimayra/from-rails-to-spring-boot/blob/8725cea838574719da9610764c8a59199991c624/myapp/src/main/java/com/example/myapp/DemoApplication.java))
 
 By default, Spring uses [Maven](https://maven.apache.org/) as the project
 management tool. After running the command above, dependencies can be found in
 `pom.xml` file, at the root directory.
 
-Install dependencies specified in `pom.xml` by using Maven:
+Navigate to your app newly created directory and then install dependencies specified in `pom.xml` by using Maven:
 
 ```
 # bundle install
