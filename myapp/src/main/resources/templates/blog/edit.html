@@ -1,1 +1,17 @@
-<p>Edit Post</p>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <p>Edit Post</p>
+        <form th:method="post"
+              th:action="@{/posts/{id}(id=${post.id})}"
+              th:object="${post}">
+            <label for="title">Title:</label>
+            <input type="text" name="title" size="50" th:field="${post.title}"></input><br/>
+            <label for="content">Content:</label><br/>
+            <textarea name="content" cols="80" rows="5" th:field="${post.content}"></textarea>
+            <br/>
+            <input type="submit"></input>
+        </form>
+    </body>
+</html>
