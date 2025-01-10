@@ -226,14 +226,14 @@ type of `Post`'s identity (ID).
 This interface will be automatically implemented at runtime.
 
 Whole example can be found [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/2949ca6dc2a35f32c9b7516519e99bb82dd574e3).
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/6b9e0e375f704a01bef99f1a85924cebe048079b).
 
 ## Performing a creation through a web interface
 
 Next step is adding a form to submit posts to the blog.
 At this point, we already have the
-[templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/2949ca6dc2a35f32c9b7516519e99bb82dd574e3/myapp/src/main/resources/templates/blog/new.html)
-file containing a single line in it.
+[templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob//myapp/src/main/resources/templates/blog/new.html/6b9e0e375f704a01bef99f1a85924cebe048079b)
+file containing a single line in it. You can access this page on http://localhost:8080/posts.
 
 Using Thymelaf, we can do that with the following approach:
 
@@ -279,7 +279,7 @@ public class BlogController {
 ```
 
 See whole implementation [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b7301838feb251851874fc72704e0100d2e8fa0e#diff-926ef30f0a8789410c4e35200aacb000).
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/415ed6d9c2e9035780dd20ba7e5a71e12bcfbbee).
 
 ## Displaying a collection of data
 
