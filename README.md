@@ -414,8 +414,7 @@ can also be added to `posts/index` to enable edit form to be easily accessed:
 <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
 ```
 
-This implementation can be seen [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/2960884).
+This implementation can be seen [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/a4e83e43f4966075bbb3446a54fb2cdbe7a0e92b).
 
 ## Showing a Resource
 
