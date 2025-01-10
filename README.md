@@ -303,7 +303,7 @@ view (like instance variables in Rails). In this example, we're adding the list
 of posts to a key named `posts`, so we can access it from the template.
 
 Following code must be implemented to
-[templates/blog/index.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/101611c7/myapp/src/main/resources/templates/blog/index.html):
+[templates/blog/index.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/415ed6d9c2e9035780dd20ba7e5a71e12bcfbbee/myapp/src/main/resources/templates/blog/index.html):
 ```html
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
@@ -324,8 +324,7 @@ Following code must be implemented to
 
 ```
 
-See implementation [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b96ce2c).
+See implementation [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/da63ee6f30bf46dd7cc5fa1904ee3d545ec2dead).
 
 Now, accessing application at http://localhost:8080/posts, it is possible to
 list and to submit posts using the features implemented so far. Similar approach
