@@ -459,8 +459,7 @@ We can also add a link at posts index to allow direct access to show:
 <a th:href="@{/posts/{id}/(id=${post.id})}">Show</a>
 ```
 
-Implementation can be seen [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/dd98c1d).
+Implementation can be seen [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/bb1fd5d839d9f172f9fa9725ccd2f7f691c71532).
 
 ## Destroying a Resource
 
