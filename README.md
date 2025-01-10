@@ -226,13 +226,13 @@ type of `Post`'s identity (ID).
 This interface will be automatically implemented at runtime.
 
 Whole example can be found [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/e755e5a).
+here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/2949ca6dc2a35f32c9b7516519e99bb82dd574e3).
 
 ## Performing a creation through a web interface
 
 Next step is adding a form to submit posts to the blog.
 At this point, we already have the
-[templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/101611c7a5c5321169e492ed19381df5c1b12c76/myapp/src/main/resources/templates/blog/new.html)
+[templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/2949ca6dc2a35f32c9b7516519e99bb82dd574e3/myapp/src/main/resources/templates/blog/new.html)
 file containing a single line in it.
 
 Using Thymelaf, we can do that with the following approach:
