@@ -95,6 +95,13 @@ Navigate to your app newly created directory and then install dependencies speci
 mvn clean install
 ```
 
+If you want to add new dependencies to the project once you already created, you'll edit the pom.xml file (just like
+you'd on the Gemfile). See an example on [this
+commit](https://github.com/lidimayra/from-rails-to-spring-boot/commit/ea16127ab9528ccb071f42614233643893ea5fcf), where
+I'm adding [spring-boot-devtools](https://docs.spring.io/spring-boot/reference/using/devtools.html). These tools add
+some capabilities that are convenient for development (for example: automatically restart the server whenever files on
+the classpath are changed). After adding a dependency, remember to run `mvn install` again.
+
 Start the server using `spring-boot:run`, a task that's provided by Maven
 plugin:
 ```
