@@ -32,7 +32,12 @@ public class BlogController {
     }
 
     @GetMapping("/posts/{postId}")
-    public String showPost() {
+    public String showPost(@PathVariable("postId") long id, Model model) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
+
+        model.addAttribute("post", post);
+
         return "blog/show";
     }
 

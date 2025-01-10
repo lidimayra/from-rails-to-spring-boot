@@ -1,1 +1,13 @@
-<p>Post title</p>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+        <h1 th:text="${post.title}"></h1>
+        <hr>
+        <p th:text="${post.content}"></p>
+
+        <p><a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a></p>
+        <hr>
+        <a th:href="@{/posts}">Go back to posts</a>
+    </body>
+</html>

@@ -9,7 +9,7 @@
     </dt>
 
     <dd>
-        <span th:text="${post.content}">Content</span>
+        <a th:href="@{/posts/{id}(id=${post.id})}">Show</a>
         <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
     </dd>
 </dl>
