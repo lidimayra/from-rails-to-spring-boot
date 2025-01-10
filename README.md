@@ -22,7 +22,7 @@ Contributions are welcome!
 [Destroying a Resource](#destroying-a-resource)
 
 ## Pre-requisite
-[Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+[Java Development Kit 23](https://www.oracle.com/java/technologies/downloads/#java23)
 
 ## Maven instalation
 
@@ -79,21 +79,28 @@ console application.
 - [thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf): Server-side Java template engine
 
 [Example of Spring Boot
-initialization](https://github.com/lidimayra/from-rails-to-spring-boot/commit/310ae4766254c3b18c6fe144cf7eacee49dcc515).
+initialization](https://github.com/lidimayra/from-rails-to-spring-boot/commit/3719c29f25e497020ad4e7f7438581b1fe353f91).
 
 Note that a class was created named as `DemoApplication.java` in
-`src/main/java/com/example/<app_name>/` ([Example](https://github.com/lidimayra/from-rails-to-spring-boot/blob/310ae4766254c3b18c6fe144cf7eacee49dcc515/myapp/src/main/java/com/example/myapp/DemoApplication.java))
+`src/main/java/com/example/<app_name>/` ([Example](https://github.com/lidimayra/from-rails-to-spring-boot/blob/8725cea838574719da9610764c8a59199991c624/myapp/src/main/java/com/example/myapp/DemoApplication.java))
 
 By default, Spring uses [Maven](https://maven.apache.org/) as the project
 management tool. After running the command above, dependencies can be found in
 `pom.xml` file, at the root directory.
 
-Install dependencies specified in `pom.xml` by using Maven:
+Navigate to your app newly created directory and then install dependencies specified in `pom.xml` by using Maven:
 
 ```
 # bundle install
 mvn clean install
 ```
+
+If you want to add new dependencies to the project once you already created, you'll edit the pom.xml file (just like
+you'd on the Gemfile). See an example on [this
+commit](https://github.com/lidimayra/from-rails-to-spring-boot/commit/ea16127ab9528ccb071f42614233643893ea5fcf), where
+I'm adding [spring-boot-devtools](https://docs.spring.io/spring-boot/reference/using/devtools.html). These tools add
+some capabilities that are convenient for development (for example: automatically restart the server whenever files on
+the classpath are changed). After adding a dependency, remember to run `mvn install` again.
 
 Start the server using `spring-boot:run`, a task that's provided by Maven
 plugin:
@@ -137,7 +144,7 @@ _bar.html_
 ```html
 <p>FooBar</p>
 ```
-[Example](https://github.com/lidimayra/from-rails-to-spring-boot/commit/13d195c)
+[Example](https://github.com/lidimayra/from-rails-to-spring-boot/commit/623e0e8a31185bb22c8daf74d047f87d35c0936d)
 
 Now, if we run the application with `mvn spring-boot:run` command and access
 it at `http://localhost:8080/foo`, we'll see the _bar.html_ page being rendered.
@@ -147,15 +154,14 @@ it at `http://localhost:8080/foo`, we'll see the _bar.html_ page being rendered.
 At this point, we have the initial structure of a Maven project.
 
 - Main application code is placed in
-  [src/main/java/](https://github.com/lidimayra/from-rails-to-spring-boot/tree/13d195c/myapp/src/main/java)
-- Resources are placed in [src/main/resources](https://github.com/lidimayra/from-rails-to-spring-boot/tree/13d195c/myapp/src/main/resources)
+  [src/main/java/](https://github.com/lidimayra/from-rails-to-spring-boot/tree/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/src/main/java)
+- Resources are placed in [src/main/resources](https://github.com/lidimayra/from-rails-to-spring-boot/tree/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/src/main/resources)
 - Tests code is placed in
-  [src/test/java](https://github.com/lidimayra/from-rails-to-spring-boot/tree/310ae47/myapp/src/test/java)
+  [src/test/java](https://github.com/lidimayra/from-rails-to-spring-boot/tree/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/src/test/java)
 
 In the root directory, we have the pom file:
-[pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/47070ef50056a763fdfeba46a8c8da2034de6118/myapp/pom.xml).
-This is the Maven build specification. Like in Rails Gemfile, it contains the
-project's dependencies declarations.
+[pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/pom.xml).
+This is the Maven build specification. As mentioned above, it contains the project's dependencies declarations.
 
 ## RESTful routes
 
@@ -171,7 +177,7 @@ definition of a route that uses `GET` method. Similarly, Spring supports other
 four inbuilt annotations for handling different types of HTTP request methods:
 `@PostMapping`, `@PutMapping`, `@DeleteMapping` and `@PatchMapping`.
 
-Example of these concepts being applied for the blog posts can be found in [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/101611c).
+Example of these concepts being applied for the blog posts can be found in [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/9636d6fc5fef5f74e564e6c8cf5e993e21f751b4).
 
 ## From Rails Models to Spring Entities
 
@@ -219,15 +225,14 @@ type of `Post`'s identity (ID).
 
 This interface will be automatically implemented at runtime.
 
-Whole example can be found [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/e755e5a).
+Whole example can be found [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/6b9e0e375f704a01bef99f1a85924cebe048079b).
 
 ## Performing a creation through a web interface
 
 Next step is adding a form to submit posts to the blog.
 At this point, we already have the
-[templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/101611c7a5c5321169e492ed19381df5c1b12c76/myapp/src/main/resources/templates/blog/new.html)
-file containing a single line in it.
+[templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob//myapp/src/main/resources/templates/blog/new.html/6b9e0e375f704a01bef99f1a85924cebe048079b)
+file containing a single line in it. You can access this page on http://localhost:8080/posts/new.
 
 Using Thymelaf, we can do that with the following approach:
 
@@ -272,8 +277,7 @@ public class BlogController {
 }
 ```
 
-See whole implementation [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b7301838feb251851874fc72704e0100d2e8fa0e#diff-926ef30f0a8789410c4e35200aacb000).
+See whole implementation [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/415ed6d9c2e9035780dd20ba7e5a71e12bcfbbee).
 
 ## Displaying a collection of data
 
@@ -297,7 +301,7 @@ view (like instance variables in Rails). In this example, we're adding the list
 of posts to a key named `posts`, so we can access it from the template.
 
 Following code must be implemented to
-[templates/blog/index.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/101611c7/myapp/src/main/resources/templates/blog/index.html):
+[templates/blog/index.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob/415ed6d9c2e9035780dd20ba7e5a71e12bcfbbee/myapp/src/main/resources/templates/blog/index.html):
 ```html
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
@@ -318,8 +322,7 @@ Following code must be implemented to
 
 ```
 
-See implementation [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/b96ce2c).
+See implementation [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/da63ee6f30bf46dd7cc5fa1904ee3d545ec2dead).
 
 Now, accessing application at http://localhost:8080/posts, it is possible to
 list and to submit posts using the features implemented so far. Similar approach
@@ -362,7 +365,6 @@ Then, we must implement the edit form:
               th:action="@{/posts/{id}(id=${post.id})}"
               th:object="${post}">
 
-            <input type="hidden" name="_method" value="patch" />
             <label for="title">Title:</label>
             <input type="text" name="title" size="50" th:field="${post.title}"></input>
             <br/>
@@ -388,7 +390,7 @@ In order to implement it, the following changes are required in the
 `BlogController`:
 
 ```java
-@PatchMapping("/posts/{postId}")
+@PostMapping("/posts/{postId}")
 public String updatePost(@PathVariable("postId") long id, Model model, Post post) {
     Post recordedPost = postRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
@@ -409,8 +411,7 @@ can also be added to `posts/index` to enable edit form to be easily accessed:
 <a th:href="@{/posts/{id}/edit(id=${post.id})}">Edit</a>
 ```
 
-This implementation can be seen [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/2960884).
+This implementation can be seen [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/a4e83e43f4966075bbb3446a54fb2cdbe7a0e92b).
 
 ## Showing a Resource
 
@@ -452,11 +453,10 @@ These changes enable post details to be available at `https://localhost:8080/pos
 
 We can also add a link at posts index to allow direct access to show:
 ```html
-<a th:href="@{/posts/{id}/(id=${post.id})}">Show</a>
+<a th:href="@{/posts/{id}(id=${post.id})}">Show</a>
 ```
 
-Implementation can be seen [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/dd98c1d).
+Implementation can be seen [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/0aa88c3429b45cba04aba95d2b353315a9f07c6e).
 
 ## Destroying a Resource
 
@@ -475,10 +475,10 @@ public String deletePost(@PathVariable("postId") long id, Model model) {
 }
 ```
 
-Note that we're using GET method in here. That's because in this example, our
+Note that we're using GET method here. That's because in this example, our
 app is a monolith and DELETE method is not supported by the browsers. In order to
 keep things simple and avoid the addition of a form with a hidden field to
-handle this method (like we did when updating), this one is being used as a GET.
+handle this method, this one is being used as a GET.
 If this was an API, `@DeleteMapping` would be the ideal option.
 
 And then we can add a link to delete in index page:
@@ -490,4 +490,4 @@ And then we can add a link to delete in index page:
 Now it is possible to access https://localhost:8080/posts and delete each post
 by using the delete link that's displayed below it.
 
-Implementation can be found [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/cb38bf7).
+Implementation can be found [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/62a986c).

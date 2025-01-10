@@ -51,7 +51,7 @@ public class BlogController {
         return "blog/edit";
     }
 
-    @PatchMapping("/posts/{postId}")
+    @PostMapping("/posts/{postId}")
     public String updatePost(@PathVariable("postId") long id, Model model, Post post) {
         Post recordedPost = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
@@ -69,7 +69,6 @@ public class BlogController {
     public String deletePost(@PathVariable("postId") long id, Model model) {
         Post recordedPost = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
-
         postRepository.delete(recordedPost);
         model.addAttribute("posts", postRepository.findAll());
         return "blog/index";

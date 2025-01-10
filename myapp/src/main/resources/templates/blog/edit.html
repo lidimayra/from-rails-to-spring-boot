@@ -3,11 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <body>
         <p>Edit Post</p>
-        <form th:method="patch"
+        <form th:method="post"
               th:action="@{/posts/{id}(id=${post.id})}"
               th:object="${post}">
             <label for="title">Title:</label>
-            <input type="hidden" name="_method" value="patch" />
             <input type="text" name="title" size="50" th:field="${post.title}"></input><br/>
             <label for="content">Content:</label><br/>
             <textarea name="content" cols="80" rows="5" th:field="${post.content}"></textarea>
