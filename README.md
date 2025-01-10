@@ -177,7 +177,7 @@ definition of a route that uses `GET` method. Similarly, Spring supports other
 four inbuilt annotations for handling different types of HTTP request methods:
 `@PostMapping`, `@PutMapping`, `@DeleteMapping` and `@PatchMapping`.
 
-Example of these concepts being applied for the blog posts can be found in [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/101611c).
+Example of these concepts being applied for the blog posts can be found in [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/9636d6fc5fef5f74e564e6c8cf5e993e21f751b4).
 
 ## From Rails Models to Spring Entities
 
