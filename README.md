@@ -144,7 +144,7 @@ _bar.html_
 ```html
 <p>FooBar</p>
 ```
-[Example](https://github.com/lidimayra/from-rails-to-spring-boot/commit/13d195c)
+[Example](https://github.com/lidimayra/from-rails-to-spring-boot/commit/623e0e8a31185bb22c8daf74d047f87d35c0936d)
 
 Now, if we run the application with `mvn spring-boot:run` command and access
 it at `http://localhost:8080/foo`, we'll see the _bar.html_ page being rendered.
@@ -154,15 +154,14 @@ it at `http://localhost:8080/foo`, we'll see the _bar.html_ page being rendered.
 At this point, we have the initial structure of a Maven project.
 
 - Main application code is placed in
-  [src/main/java/](https://github.com/lidimayra/from-rails-to-spring-boot/tree/13d195c/myapp/src/main/java)
-- Resources are placed in [src/main/resources](https://github.com/lidimayra/from-rails-to-spring-boot/tree/13d195c/myapp/src/main/resources)
+  [src/main/java/](https://github.com/lidimayra/from-rails-to-spring-boot/tree/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/src/main/java)
+- Resources are placed in [src/main/resources](https://github.com/lidimayra/from-rails-to-spring-boot/tree/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/src/main/resources)
 - Tests code is placed in
-  [src/test/java](https://github.com/lidimayra/from-rails-to-spring-boot/tree/310ae47/myapp/src/test/java)
+  [src/test/java](https://github.com/lidimayra/from-rails-to-spring-boot/tree/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/src/test/java)
 
 In the root directory, we have the pom file:
-[pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/47070ef50056a763fdfeba46a8c8da2034de6118/myapp/pom.xml).
-This is the Maven build specification. Like in Rails Gemfile, it contains the
-project's dependencies declarations.
+[pom.xml](https://github.com/lidimayra/from-rails-to-spring-boot/blob/623e0e8a31185bb22c8daf74d047f87d35c0936d/myapp/pom.xml).
+This is the Maven build specification. As mentioned above, it contains the project's dependencies declarations.
 
 ## RESTful routes
 
