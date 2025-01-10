@@ -22,7 +22,7 @@ Contributions are welcome!
 [Destroying a Resource](#destroying-a-resource)
 
 ## Pre-requisite
-[Java Development Kit 8](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+[Java Development Kit 23](https://www.oracle.com/java/technologies/downloads/#java23)
 
 ## Maven instalation
 
@@ -79,7 +79,7 @@ console application.
 - [thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf): Server-side Java template engine
 
 [Example of Spring Boot
-initialization](https://github.com/lidimayra/from-rails-to-spring-boot/commit/8725cea838574719da9610764c8a59199991c624).
+initialization](https://github.com/lidimayra/from-rails-to-spring-boot/commit/3719c29f25e497020ad4e7f7438581b1fe353f91).
 
 Note that a class was created named as `DemoApplication.java` in
 `src/main/java/com/example/<app_name>/` ([Example](https://github.com/lidimayra/from-rails-to-spring-boot/blob/8725cea838574719da9610764c8a59199991c624/myapp/src/main/java/com/example/myapp/DemoApplication.java))
@@ -225,15 +225,14 @@ type of `Post`'s identity (ID).
 
 This interface will be automatically implemented at runtime.
 
-Whole example can be found [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/6b9e0e375f704a01bef99f1a85924cebe048079b).
+Whole example can be found [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/6b9e0e375f704a01bef99f1a85924cebe048079b).
 
 ## Performing a creation through a web interface
 
 Next step is adding a form to submit posts to the blog.
 At this point, we already have the
 [templates/blog/new.html](https://github.com/lidimayra/from-rails-to-spring-boot/blob//myapp/src/main/resources/templates/blog/new.html/6b9e0e375f704a01bef99f1a85924cebe048079b)
-file containing a single line in it. You can access this page on http://localhost:8080/posts.
+file containing a single line in it. You can access this page on http://localhost:8080/posts/new.
 
 Using Thymelaf, we can do that with the following approach:
 
@@ -278,8 +277,7 @@ public class BlogController {
 }
 ```
 
-See whole implementation [in
-here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/415ed6d9c2e9035780dd20ba7e5a71e12bcfbbee).
+See whole implementation [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/415ed6d9c2e9035780dd20ba7e5a71e12bcfbbee).
 
 ## Displaying a collection of data
 
@@ -367,7 +365,6 @@ Then, we must implement the edit form:
               th:action="@{/posts/{id}(id=${post.id})}"
               th:object="${post}">
 
-            <input type="hidden" name="_method" value="patch" />
             <label for="title">Title:</label>
             <input type="text" name="title" size="50" th:field="${post.title}"></input>
             <br/>
@@ -393,7 +390,7 @@ In order to implement it, the following changes are required in the
 `BlogController`:
 
 ```java
-@PatchMapping("/posts/{postId}")
+@PostMapping("/posts/{postId}")
 public String updatePost(@PathVariable("postId") long id, Model model, Post post) {
     Post recordedPost = postRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Invalid Post Id:" + id));
@@ -456,10 +453,10 @@ These changes enable post details to be available at `https://localhost:8080/pos
 
 We can also add a link at posts index to allow direct access to show:
 ```html
-<a th:href="@{/posts/{id}/(id=${post.id})}">Show</a>
+<a th:href="@{/posts/{id}(id=${post.id})}">Show</a>
 ```
 
-Implementation can be seen [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/bb1fd5d839d9f172f9fa9725ccd2f7f691c71532).
+Implementation can be seen [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/0aa88c3429b45cba04aba95d2b353315a9f07c6e).
 
 ## Destroying a Resource
 
@@ -478,10 +475,10 @@ public String deletePost(@PathVariable("postId") long id, Model model) {
 }
 ```
 
-Note that we're using GET method in here. That's because in this example, our
+Note that we're using GET method here. That's because in this example, our
 app is a monolith and DELETE method is not supported by the browsers. In order to
 keep things simple and avoid the addition of a form with a hidden field to
-handle this method (like we did when updating), this one is being used as a GET.
+handle this method, this one is being used as a GET.
 If this was an API, `@DeleteMapping` would be the ideal option.
 
 And then we can add a link to delete in index page:
@@ -493,4 +490,4 @@ And then we can add a link to delete in index page:
 Now it is possible to access https://localhost:8080/posts and delete each post
 by using the delete link that's displayed below it.
 
-Implementation can be found [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/cb38bf7).
+Implementation can be found [here](https://github.com/lidimayra/from-rails-to-spring-boot/commit/62a986c).
