@@ -1,3 +1,6 @@
+_This tutorial was also published as a DZone article. See it
+[here](https://dzone.com/articles/from-ruby-on-rails-to-spring-boot)._
+
 # From Rails to Spring Boot
 
 Like Rails, Spring Boot also follows _Convention over Configuration_ principles.
